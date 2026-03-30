@@ -1,0 +1,5 @@
+{
+  "name": "FoxShare",
+  "description": "A file-sharing platform that provides direct, obfuscated links valid for 24 hours.",
+  "requestFramePermissions": []
+}

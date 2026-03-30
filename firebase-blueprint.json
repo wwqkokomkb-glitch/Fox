@@ -1,0 +1,25 @@
+{
+  "entities": {
+    "File": {
+      "title": "File Metadata",
+      "description": "Stores metadata for uploaded files.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Obfuscated ID (nanoid)" },
+        "originalName": { "type": "string", "description": "Original file name" },
+        "mimeType": { "type": "string", "description": "MIME type" },
+        "size": { "type": "number", "description": "File size in bytes" },
+        "storagePath": { "type": "string", "description": "Path in Firebase Storage" },
+        "expiresAt": { "type": "string", "format": "date-time", "description": "Expiry timestamp" },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Creation timestamp" }
+      },
+      "required": ["id", "originalName", "mimeType", "size", "storagePath", "expiresAt", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/files/{fileId}": {
+      "schema": "File",
+      "description": "Collection of file metadata documents."
+    }
+  }
+}

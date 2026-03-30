@@ -1,0 +1,16 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Helper to check if file is not expired
+    function isNotExpired(data) {
+      return request.time < timestamp.date(data.expiresAt);
+    }
+
+    match /files/{fileId} {
+      // Allow public read if not expired
+      allow read: if isNotExpired(resource.data);
+      // Only server (admin) should create/update/delete
+      allow write: if false;
+    }
+  }
+}
